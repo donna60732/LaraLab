@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticlesController;
 
-Route::resource('post', ArticlesController::class);
+Route::resource('articles', ArticlesController::class);
 Route::get('/', [ArticlesController::class, 'index'])->name('root');
 
 
