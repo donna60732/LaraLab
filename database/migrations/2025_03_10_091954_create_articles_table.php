@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->enum('state', ['draft','published']);
+            $table->enum('state', ['draft', 'published'])->default('draft');
             $table->softDeletes();
             $table->foreignId('user_id');
             $table->timestamps();
