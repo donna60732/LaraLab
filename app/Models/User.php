@@ -69,7 +69,7 @@ class User extends Authenticatable
     }
 
     // 與文章有關聯性
-    public function articles(): HasMany
+    public function articles()
     {
         return $this->hasMany(Article::class);
     }

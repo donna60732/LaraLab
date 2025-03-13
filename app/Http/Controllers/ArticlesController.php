@@ -13,13 +13,21 @@ class ArticlesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::with('user')->orderBy('id', 'desc')->paginate(3);
+        // $articles = Article::paginate(3);
         return view('articles.index', ['articles' => $articles]);
+    }
+    // 檢視文章
+    public function show($id)
+    {
+        $article = Article::find($id);
+        // return view('articles.show', ['articles' => $article]);
+        return view('articles.show', ['article' => $article]);
     }
     // 新增文章
     public function create()
@@ -35,7 +43,11 @@ class ArticlesController extends Controller
             'content' => 'required|min:10'
         ]);
 
-        auth()->user()->articles()->create($content);
+        if (!auth()->check()) {
+            auth()->user()->articles()->create($content);
+        } else {
+            return redirect()->route('login')->with('error', '請先登入');
+        }
         return redirect()->route('root')->with('notice', '文章新增成功!');
     }
     // 編輯文章(高老師的版本)
@@ -86,5 +98,12 @@ class ArticlesController extends Controller
         $article->update($content);
         // 重定向並顯示成功訊息
         return redirect()->route('root')->with('notice', '文章更新成功!');
+    }
+    // 刪除文章
+    public function destory($id)
+    {
+        $article = auth()->user()->articles->find($id);
+        $article->delete();
+        return redirect()->rount('root')->with('notice', '文章已刪除!');
     }
 }
