@@ -1,9 +1,10 @@
 @extends('layouts.articles')
 
 @section('main')
-<h1 class="font-thin text-4xl">文章列表</h1>
+<h1 class="font-thin text-4xl">Pei's BLOG</h1>
+<h2 class="font-thin text-2xl">文章列表</h2>
 <a href="{{ route('articles.create') }}">新增文章</a>
-
+<a href="{{ route('messages.index') }}" class="btn btn-primary">留言板</a>
 
 
 @foreach($articles as $article)

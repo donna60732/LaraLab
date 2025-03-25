@@ -73,4 +73,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Article::class);
     }
+
+    // 與留言有關聯性
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }
