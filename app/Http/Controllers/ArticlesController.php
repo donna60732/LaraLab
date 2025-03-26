@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
-use Termwind\Components\Raw;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +14,7 @@ class ArticlesController extends Controller
     {
         $this->middleware('auth')->except(['index', 'show']);
     }
-
+    // index 頁面
     public function index()
     {
         $articles = Article::with('user')->orderBy('id', 'desc')->paginate(3);
@@ -26,7 +25,6 @@ class ArticlesController extends Controller
     public function show($id)
     {
         $article = Article::find($id);
-        // return view('articles.show', ['articles' => $article]);
         return view('articles.show', ['article' => $article]);
     }
     // 新增文章
@@ -37,29 +35,19 @@ class ArticlesController extends Controller
     // 新增文章後存放的地方
     public function store(Request $request)
     {
-        // 驗證是否符合規定
+        // 驗證文章內容
         $content = $request->validate([
             'title' => 'required',
             'content' => 'required|min:10'
         ]);
 
         if (!auth()->check()) {
-            auth()->user()->articles()->create($content);
-        } else {
             return redirect()->route('login')->with('error', '請先登入');
         }
+
+        auth()->user()->articles()->create($content);
         return redirect()->route('root')->with('notice', '文章新增成功!');
     }
-    // 編輯文章(高老師的版本)
-    // public function edit($id)
-    // {
-    //     $article = auth()->user()->articles()->find($id);
-    //     if (!$article) {
-    //         return redirect()->route('root')->with('error', '文章未找到或無權限');
-    //     }
-    //     // $article = Article::find($id);
-    //     return view('articles.edit');
-    // }
 
     // 編輯文章
     public function edit($id)
@@ -71,7 +59,8 @@ class ArticlesController extends Controller
         }
 
         // 只查詢當前用戶的文章
-        $article = DB::table('articles')->where('id', $id)->where('user_id', $user->id)->first();
+        // $article = DB::table('articles')->where('id', $id)->where('user_id', $user->id)->first();
+        $article = auth()->user()->articles()->find($id);
 
         if (!$article) {
             return redirect()->back()->with('error', '文章不存在或無權限');
@@ -100,10 +89,10 @@ class ArticlesController extends Controller
         return redirect()->route('root')->with('notice', '文章更新成功!');
     }
     // 刪除文章
-    public function destory($id)
+    public function destroy($id)
     {
         $article = auth()->user()->articles->find($id);
         $article->delete();
-        return redirect()->rount('root')->with('notice', '文章已刪除!');
+        return redirect()->route('root')->with('notice', '文章已刪除!');
     }
 }

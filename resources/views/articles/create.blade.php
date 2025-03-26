@@ -1,7 +1,7 @@
 @extends('layouts.articles')
 
 @section('main')
-<h1 class="font-thin text-4xl">文章 > 新增文章</h1>
+<h2 class="font-thin text-4xl">文章 > 新增文章</h2>
 
 @if($errors->any())
 <div class="errors p-3 bg-red-500 text-red-100 font-thin rounded">
