@@ -26,31 +26,35 @@ class MessageController extends Controller
 
     public function store(Request $request)
     {
-
+        $user = $request->user();
         $content = $request->validate([
             'content' => 'required|min:10'
         ]);
-        $user = Auth::user();
-        auth()->user()->messages()->create($content);
-
+        $user()->messages()->create($content);
         return redirect()->route('messages.index')->with('success', '留言已發表！');
     }
-
     public function edit($id)
     {
         $user = Auth::user();
-        $message = auth()->$user()->articles()->find($id);
-        return view('message.edit', ['message' => $message]);
+        $message = $user->messages()->find($id);
+
+        if (!$message) {
+            return redirect()->route('messages.index')->with('error', '無法編輯此留言');
+        }
+
+        return view('messages.edit', ['message' => $message]);
     }
 
     public function update(Request $request, $id)
     {
-        $user = Auth::user();
-        $message = auth()->$user()->messages()->find($id);
+        $message = auth()->user()->messages()->find($id);
+
         $content = $request->validate([
             'content' => 'required|min:10'
         ]);
+
         $message->update($content);
-        return redirect()->route('root')->with('notice', '留言更新成功!');
+
+        return redirect()->route('messages.index')->with('notice', '留言更新成功!');
     }
 }
