@@ -19,7 +19,7 @@ export default {
         },
     },
     colors: {
-        "custom-blue": "#0000A8",
+        "custom-blue": "#000080",
     },
 
     plugins: [forms, typography],

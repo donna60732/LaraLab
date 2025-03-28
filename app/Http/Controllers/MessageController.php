@@ -10,7 +10,7 @@ class MessageController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index']);
+        $this->middleware(['auth', 'verified'])->except(['index', 'show']);
     }
 
     public function index()

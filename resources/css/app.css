@@ -5,3 +5,54 @@
 [x-cloak] {
     display: none;
 }
+.btn {
+    color: black;
+    background: silver;
+    border: 2px solid;
+    border-color: white gray gray white;
+    padding: 4px 12px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: inset -1px -1px gray, inset 1px 1px white;
+    outline: none;
+}
+.btn {
+    padding: 4px 12px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: inset -1px -1px gray, inset 1px 1px white;
+    outline: none;
+}
+.btn-danger {
+    color: black;
+    background: #c0c0c0; /* 銀色 */
+    border: 2px solid white;
+    border-color: white gray gray white;
+    padding: 4px 12px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: inset -1px -1px gray, inset 1px 1px white;
+}
+.btn-primary {
+    background-color: #2563eb; /* 藍色 */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-danger {
+    background-color: #dc2626; /* 紅色 */
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #b91c1c;
+}
+.window {
+    border: 2px solid #ddd; /* 視窗邊框 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 內外陰影效果 */
+    border-radius: 12px; /* 圓角 */
+    background-color: white; /* 背景顏色 */
+}
