@@ -18,6 +18,9 @@ export default {
             },
         },
     },
+    colors: {
+        "custom-blue": "#0000A8",
+    },
 
     plugins: [forms, typography],
 };

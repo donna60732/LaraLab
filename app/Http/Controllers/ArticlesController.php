@@ -12,7 +12,7 @@ class ArticlesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware(['auth', 'verified'])->except(['index', 'show']);
     }
     // index 頁面
     public function index()
@@ -35,63 +35,60 @@ class ArticlesController extends Controller
     // 新增文章後存放的地方
     public function store(Request $request)
     {
+        $user = $request->user();
+
+        // if (!auth()->check()) {}
+        if (!$user) {
+            return redirect()->route('login')->with('error', '請先登入');
+        }
+
         // 驗證文章內容
         $content = $request->validate([
             'title' => 'required',
             'content' => 'required|min:10'
         ]);
-
-        if (!auth()->check()) {
-            return redirect()->route('login')->with('error', '請先登入');
-        }
-
-        auth()->user()->articles()->create($content);
+        $user->articles()->create($content);
         return redirect()->route('root')->with('notice', '文章新增成功!');
+        // auth()->user()->articles()->create($content);
+        // return redirect()->route('root')->with('notice', '文章新增成功!');
     }
 
     // 編輯文章
     public function edit($id)
     {
-        $user = Auth::user();
-
-        if (!$user) {
-            return redirect()->route('login')->with('error', '請先登入');
-        }
-
-        // 只查詢當前用戶的文章
-        // $article = DB::table('articles')->where('id', $id)->where('user_id', $user->id)->first();
-        $article = auth()->user()->articles()->find($id);
-
-        if (!$article) {
-            return redirect()->back()->with('error', '文章不存在或無權限');
-        }
-
-        return view('articles.edit', compact('article'));
+        $article = auth()->$user()->articles()->find($id);
+        return view('articles.edit', ['article' => $article]);
     }
 
     // 更新文章
     public function update(Request $request, $id)
     {
-        // 抓取當前用戶的文章
-        $article = auth()->user()->articles()->find($id);
-        // 如果文章不存在，則返回錯誤
+        $user = Auth::user();
+        $article = auth()->$user->articles()->find($id);
         if (!$article) {
             return redirect()->back()->with('error', '文章不存在或無權限');
         }
-        // 驗證請求資料
+
         $content = $request->validate([
             'title' => 'required',
             'content' => 'required|min:10'
         ]);
-        // 更新文章
         $article->update($content);
-        // 重定向並顯示成功訊息
         return redirect()->route('root')->with('notice', '文章更新成功!');
     }
     // 刪除文章
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $article = auth()->user()->articles->find($id);
+        $user = $request->user();
+        if (!$user) {
+            return redirect()->route('login')->with('error', '請先登入');
+        }
+        $article = $user->articles()->find($id);
+        // $article = auth()->user()->articles->find($id);
+        if (!$article) {
+            return redirect()->back()->with('error', '文章不存在或無權限');
+        }
+
         $article->delete();
         return redirect()->route('root')->with('notice', '文章已刪除!');
     }

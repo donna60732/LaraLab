@@ -21,7 +21,7 @@
 <!-- 文章列表 -->
 <div class="articles-container" style="border: 4px solid #290083;margin: 10px 0 10px 0 ;">
     <h2 class=" font-thin text-2xl" style="background-color: #290083; color: white; margin: 5px; text-align: center;">文章列表</h2>
-    <!-- 操作區域 -->
+
     <a href="{{ route('articles.create') }}" style="padding: 5px;">新增文章</a>
     <div class="articles-list">
         @foreach($articles as $article)
