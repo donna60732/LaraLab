@@ -57,4 +57,10 @@ class MessageController extends Controller
 
         return redirect()->route('messages.index')->with('notice', '留言更新成功!');
     }
+    public function destroy($id)
+    {
+        $message = auth()->user()->messages()->find($id);
+        $message->delete();
+        return redirect()->route('root')->with('notice', '留言已刪除!');
+    }
 }

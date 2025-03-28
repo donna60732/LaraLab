@@ -69,13 +69,13 @@ class User extends Authenticatable
     }
 
     // 與文章有關聯性
-    public function articles()
+    public function articles(): HasMany
     {
         return $this->hasMany(Article::class);
     }
 
     // 與留言有關聯性
-    public function messages()
+    public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
     }
