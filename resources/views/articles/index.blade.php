@@ -1,8 +1,7 @@
 @extends('layouts.articles')
-
+<x-banner title="首頁 Banner" />
 @section('main')
-<!-- 文章列表 -->
-<div class="articles-container" style="border: 4px solid #000080;margin: 10px 0 10px 0 ;">
+<div class="articles-container">
     <h2 class=" font-thin text-2xl" style="background-color: #000080; color: white; margin: 5px; text-align: center;">文章列表</h2>
 
     <a href="{{ route('articles.create') }}" style="padding: 5px;">新增文章</a>

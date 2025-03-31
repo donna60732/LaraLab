@@ -1,10 +1,25 @@
 @props(['style' => session('flash.bannerStyle', 'success'), 'message' => session('flash.banner')])
 
+<!-- resources/views/components/banner.blade.php -->
+<div class="banner w-full" style="border: 3px solid #545456;">
+    <h1 class="font-bold text-3xl text-normal text-white text-center" style=" background-color: #000080;">LaraLab</h1>
+    <div class="container w-full">
+        <div class="banner-list" style="margin: 0 10px;">
+            <a href=" {{ route('articles.index') }}" class="font-bold" style="margin-right: 10px;">Article</a>
+            <a href=" {{ route('messages.index') }}" class="font-bold" style="margin-right: 10px;">Messages</a>
+            @guest
+            <a href="{{ route('login') }}" class="font-bold">Login</a>
+            @endguest
+        </div>
+    </div>
+</div>
+
+
 <div x-data="{{ json_encode(['show' => true, 'style' => $style, 'message' => $message]) }}"
     :class="{ 'bg-indigo-500': style == 'success', 'bg-red-700': style == 'danger', 'bg-yellow-500': style == 'warning', 'bg-gray-500': style != 'success' && style != 'danger' && style != 'warning'}"
-            style="display: none;"
-            x-show="show && message"
-            x-on:banner-message.window="
+    style="display: none;"
+    x-show="show && message"
+    x-on:banner-message.window="
                 style = event.detail.style;
                 message = event.detail.message;
                 show = true;

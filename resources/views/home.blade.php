@@ -8,17 +8,15 @@
     <title>LaraLab</title>
 </head>
 
-<body class="">
-    <div class="container w-full mx-auto" style="border: 3px solid #545456;">
-        <div class="logo-container" style=" text-align: center">
-            <h1 class="text-4xl sm:text-3xl font-bold text-gray-800" style=" text-align: center;border-bottom: 3px solid #545456;">LaraLab</h1>
-            <div class="banner-list">
-                <a href=" {{ route('articles.index') }}" class="">文章列表</a>
-                <a href=" {{ route('messages.index') }}" class="">留言板</a>
-                @guest
-                <a href="{{ route('login') }}" class="">登入</a>
-                @endguest
-            </div>
+<body class="w-full" style="border: 3px solid #545456;">
+    <h1 class="font-bold text-3xl text-normal text-white text-center" style=" background-color: #000080;">LaraLab</h1>
+    <div class="container w-full">
+        <div class="banner-list" style="margin: 0 10px;">
+            <a href=" {{ route('articles.index') }}" class="font-bold" style="margin-right: 10px;">Article</a>
+            <a href=" {{ route('messages.index') }}" class="font-bold" style="margin-right: 10px;">Messages</a>
+            @guest
+            <a href="{{ route('login') }}" class="font-bold">Login</a>
+            @endguest
         </div>
     </div>
 </body>

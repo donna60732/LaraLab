@@ -1,3 +1,4 @@
+<x-banner title="首頁 Banner" />
 @extends('layouts.message')
 
 @section('main')
@@ -12,16 +13,25 @@
         @foreach($messages as $message)
 
         <div class="border-t border-gray-300 my-1 p-2">
-            <h2 class="font-bold text-lg"> {{ $message->user->name }} </h2>
-            <p> {{ $message->created_at }} </p>
-            <p> {{ $message->content }} </p>
-            <div class="flex">
-                <a class="btn mr-2" href="{{ route('messages.edit', ['message' => $message->id]) }}">編輯</a>
-                <form action="{{ route('messages.destroy', $message) }}" method="post">
-                    @csrf
-                    @method('delete')
-                    <button type="submit" class=" btn">刪除</button>
-                </form>
+            <div>
+                <div class="flex">
+                    <img src="{{ Auth::user()->profile_photo_url }}" alt="頭像" class="w-12 h-12 rounded-full">
+                    <div style="margin: 0 10px;">
+                        <h2 class="font-bold text-lg"> {{ $message->user->name }} </h2>
+                        <p> {{ $message->created_at }} </p>
+                    </div>
+                </div>
+                <div style="margin: 10px 0 5px 0;">
+                    <p> {{ $message->content }} </p>
+                    <div class="flex" style="margin: 10px 0 0 0;">
+                        <a class="btn mr-2" href="{{ route('messages.edit', ['message' => $message->id]) }}">編輯</a>
+                        <form action="{{ route('messages.destroy', $message) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class=" btn">刪除</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
         @endforeach

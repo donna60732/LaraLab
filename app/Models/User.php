@@ -79,4 +79,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
+
+    // 使用會員頭像
+    public function getProfilePhotoUrlAttribute()
+    {
+        return $this->profile_photo_path
+            ? asset('storage/' . $this->profile_photo_path)
+            : asset('default-avatar.png'); // 預設頭像
+    }
 }

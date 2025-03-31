@@ -1,9 +1,10 @@
+<x-banner title="首頁 Banner" />
 @extends('layouts.message')
 
 @section('main')
 <div class="container w-full mx-auto">
-    <div class="message-create-container" style="border: 4px solid #0000A8;margin: 10px 0 10px 0 ;">
-        <h2 class="font-thin text-2xl" style="background-color: #0000A8; color: white; margin: 2px; text-align: center;">編輯留言</h2>
+    <div class="message-create-container" style="border: 4px solid #290083;margin: 10px 0 10px 0 ;">
+        <h2 class="font-thin text-2xl" style="background-color: #290083; color: white; margin: 2px; text-align: center;">編輯留言</h2>
         <h3 style="margin-left: 5px;">{{ $message->user->name }}</h3>
 
         @if($errors->any())
@@ -24,8 +25,8 @@
                 <textarea name="content" id="content" class="w-full h-100 resize" style="border: 3px solid #b7b7b7; margin: 2px;">{{ $message->content }}</textarea>
             </div>
             <div class="actions">
-                <button type="submit" class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300" style="border: 1px solid #545456;">更新留言</button>
-                <a href="{{ route('messages.index') }}" class="px-3 py-1 rounded bg-gray-500 text-white hover:bg-gray-600">返回留言板</a>
+                <button type="submit" class="btn">更新留言</button>
+                <a href="{{ route('messages.index') }}" class="btn">返回留言板</a>
             </div>
         </form>
     </div>

@@ -1,9 +1,10 @@
+<x-banner title="首頁 Banner" />
 @extends('layouts.message')
 
 @section('main')
 <div class="container w-full mx-auto">
     <div class="message-create-container" style="border: 4px solid #000080;margin: 10px 0 10px 0 ;">
-        <h2 class="font-thin text-2xl" style="background-color: #000080; color: white; margin: 2px; text-align: center;">發佈留言</h2>
+        <h2 class="font-thin text-2xl text-white" style="background-color: #000080; margin: 2px; text-align: center;">發佈留言</h2>
         <a href="{{ route('messages.index') }}" class="px-3 py-1 rounded">返回</a>
 
         @if($errors->any())
@@ -16,17 +17,37 @@
         </div>
         @endif
 
-        <form action="{{ route('messages.store') }}" method="post" style="margin-right: 5px;">
+        <form action="{{ route('messages.store') }}" method="POST">
             @csrf
-            <div class="field my-1">
-                <label for="content" class="block"></label>
+            <div style="margin: 5px 10px 5px 5px;">
+                <label for="content" class="block" style="margin: 2px;">留言内容</label>
                 <textarea name="content" id="content" class="w-full h-100 resize-y" style="border: 3px solid #b7b7b7; margin: 2px;">{{ old('content') }}</textarea>
             </div>
+            <div class="captcha-list" style="margin: 5px;">
+                <div class="flex" style="margin: 5px;">
+                    <label for="captcha" style="margin: 2px;">驗證碼：</label>
+                    <img src="{{ captcha_src() }}" alt="captcha" id="captcha-img">
+                    <a href="javascript:void(0)" onclick="reloadCaptcha()">
+                        <x-heroicon-o-arrow-path class="w-6 h-6 text-blue-500" style="margin: 3px;" />
+                    </a>
+                </div>
+                <input type="text" name="captcha" value="{{ old('captcha') }}" required style="border: 3px solid #b7b7b7; margin: 2px;">
+            </div>
             <div class="actions text-center" style="text-align: center;">
-                <button type="submit" class="btn" style="margin: 0 0 10px 0;">發表留言
+                <button type="submit" class="btn" style="margin: 0 0 10px 0;">發佈留言
                 </button>
             </div>
         </form>
+
+        <script>
+            function reloadCaptcha() {
+                fetch("{{ route('captcha.reload') }}")
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('captcha-img').src = data.captcha + '?' + Date.now();
+                    });
+            }
+        </script>
     </div>
 </div>
 @endsection
