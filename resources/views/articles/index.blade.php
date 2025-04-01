@@ -32,7 +32,7 @@
 </div>
 
 <!-- 分頁 -->
-<div class="pagination mt-6">
+<div class="pagination flex justify-center my-2">
     {{ $articles->links() }}
 </div>
 @endsection

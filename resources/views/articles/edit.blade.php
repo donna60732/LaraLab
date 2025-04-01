@@ -1,5 +1,5 @@
 @extends('layouts.articles')
-
+<x-banner title="首頁 Banner" />
 @section('main')
 <h1 class="font-thin text-4xl">文章 > 編輯文章</h1>
 {{ $article->title }}

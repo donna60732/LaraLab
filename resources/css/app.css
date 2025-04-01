@@ -10,13 +10,7 @@
     background: silver;
     border: 2px solid;
     border-color: white gray gray white;
-    padding: 4px 12px;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: inset -1px -1px gray, inset 1px 1px white;
-    outline: none;
-}
-.btn {
+    display: inline-block;
     padding: 4px 12px;
     text-align: center;
     cursor: pointer;
@@ -40,11 +34,6 @@
 
 .btn-primary:hover {
     background-color: #1d4ed8;
-}
-
-.btn-danger {
-    background-color: #dc2626; /* 紅色 */
-    color: white;
 }
 
 .btn-danger:hover {

@@ -1,5 +1,5 @@
-<x-banner title="首頁 Banner" />
 @extends('layouts.articles')
+<x-banner title="首頁 Banner" />
 @section('main')
 <div class="container w-full">
     <div class="article-create-container" style="border: 4px solid #000080; margin: 10px 0 10px 0;">
@@ -18,7 +18,7 @@
 
         <form action="{{ route('articles.store') }}" method="post" style="margin: 10px;">
             @csrf
-            <div class="">
+            <div>
                 <label for="title">標題</label>
                 <input type="text" value="{{ old('title') }}" name="title" class="border border-gray-300" style="border:3px solid #b7b7b7;outline: none;">
             </div>

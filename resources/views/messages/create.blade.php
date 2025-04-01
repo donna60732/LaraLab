@@ -1,6 +1,5 @@
-<x-banner title="首頁 Banner" />
 @extends('layouts.message')
-
+<x-banner title="首頁 Banner" />
 @section('main')
 <div class="container w-full mx-auto">
     <div class="message-create-container" style="border: 4px solid #000080;margin: 10px 0 10px 0 ;">

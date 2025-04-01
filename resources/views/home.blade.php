@@ -9,7 +9,9 @@
 </head>
 
 <body class="w-full" style="border: 3px solid #545456;">
-    <h1 class="font-bold text-3xl text-normal text-white text-center" style=" background-color: #000080;">LaraLab</h1>
+    <a href="{{ url('/') }}">
+        <h1 class="font-bold text-3xl text-normal text-white text-center" style=" background-color: #000080;">LaraLab</h1>
+    </a>
     <div class="container w-full">
         <div class="banner-list" style="margin: 0 10px;">
             <a href=" {{ route('articles.index') }}" class="font-bold" style="margin-right: 10px;">Article</a>
