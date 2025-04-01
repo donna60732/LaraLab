@@ -48,7 +48,7 @@ class ArticlesController extends Controller
             'content' => 'required|min:10'
         ]);
         $user->articles()->create($content);
-        return redirect()->route('root')->with('notice', '文章新增成功!');
+        return redirect()->route('articles.index')->with('notice', '文章新增成功!');
         // auth()->user()->articles()->create($content);
         // return redirect()->route('root')->with('notice', '文章新增成功!');
     }
@@ -56,7 +56,8 @@ class ArticlesController extends Controller
     // 編輯文章
     public function edit($id)
     {
-        $article = auth()->$user()->articles()->find($id);
+        $user = auth()->user();
+        $article = $user->articles()->find($id);
         return view('articles.edit', ['article' => $article]);
     }
 
@@ -64,7 +65,7 @@ class ArticlesController extends Controller
     public function update(Request $request, $id)
     {
         $user = Auth::user();
-        $article = auth()->$user->articles()->find($id);
+        $article = $user->articles()->find($id);
         if (!$article) {
             return redirect()->back()->with('error', '文章不存在或無權限');
         }
@@ -74,7 +75,7 @@ class ArticlesController extends Controller
             'content' => 'required|min:10'
         ]);
         $article->update($content);
-        return redirect()->route('root')->with('notice', '文章更新成功!');
+        return redirect()->route('articles.index')->with('notice', '文章更新成功!');
     }
     // 刪除文章
     public function destroy(Request $request, $id)
@@ -90,6 +91,6 @@ class ArticlesController extends Controller
         }
 
         $article->delete();
-        return redirect()->route('root')->with('notice', '文章已刪除!');
+        return redirect()->route('articles.index')->with('notice', '文章已刪除!');
     }
 }

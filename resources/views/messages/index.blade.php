@@ -1,8 +1,8 @@
 @extends('layouts.message')
 <x-banner title="首頁 Banner" />
 @section('main')
-<div class="articles-container" style="margin: 10px 0 10px 0;">
-    <h2 class=" font-thin text-2xl" style="background-color: #290083; color: white; margin: 5px; text-align: center;">留言版</h2>
+<div class="articles-container" style="border: 4px solid #0000A8;margin: 10px 0 10px 0; background-color: #C0C4C8;">
+    <h2 class=" font-thin text-2xl" style="background-color:#0000A8; color: white; margin: 5px; text-align: center;">留言版</h2>
     <a href="{{ url('/') }}" class="px-3 py-1 rounded">返回</a>
     <a href="{{ route('messages.create') }}" style="padding: 5px;">新增留言</a>
 
@@ -16,7 +16,7 @@
                     <p> {{ $message->created_at }} </p>
                 </div>
             </div>
-            <div class="h-16 my-4">
+            <div class="h-16 my-2">
                 <p> {{ $message->content }} </p>
             </div>
             <div class="flex">

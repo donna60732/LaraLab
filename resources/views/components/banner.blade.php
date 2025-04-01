@@ -1,8 +1,8 @@
 @props(['style' => session('flash.bannerStyle', 'success'), 'message' => session('flash.banner')])
 
 <!-- resources/views/components/banner.blade.php -->
-<div class="banner w-full" style="border: 3px solid #545456;">
-    <h1 class="font-bold text-3xl text-normal text-white text-center" style=" background-color: #000080;">LaraLab</h1>
+<div class="banner w-full" style="border-bottom: 3px solid #545456;">
+    <h1 class="font-bold text-3xl text-normal text-white text-center" style="background-color: #0000A8;">LaraLab</h1>
     <div class="container w-full">
         <div class="banner-list" style="margin: 0 10px;">
             <a href=" {{ route('articles.index') }}" class="font-bold" style="margin-right: 10px;">Article</a>
