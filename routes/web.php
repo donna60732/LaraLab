@@ -23,7 +23,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
 });
-
+// 登出
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
 // 驗證碼
 Route::post('/captcha-validate', function (Request $request) {
     $validator = Validator::make($request->all(), [

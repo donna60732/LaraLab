@@ -10,7 +10,7 @@
         @foreach($messages as $message)
         <div class="border-t border-gray-300 my-1 p-2">
             <div class="flex">
-                <img src="{{ Auth::user()->profile_photo_url }}" alt="頭像" class="w-12 h-12 rounded-full">
+                <img src="{{ $message->user->profile_photo_url ?? asset('default-avatar.png') }}" alt="頭像" class="w-12 h-12 rounded-full">
                 <div style="margin: 0 10px;">
                     <h2 class="font-bold text-lg"> {{ $message->user->name }} </h2>
                     <p> {{ $message->created_at }} </p>
