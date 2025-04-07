@@ -3,7 +3,7 @@
 @section('main')
 <div class="articles-container" style="border: 4px solid #0000A8; margin: 10px 0 10px 0; background-color: #C0C4C8;">
     <div class="relative">
-        <h2 class=" font-thin text-2xl" style=" color: white; text-align: center;background-color: #0000A8;">文章列表</h2>
+        <h2 class=" font-medium text-2xl" style=" color: white; text-align: center;background-color: #0000A8;">Article</h2>
         <div class="btn absolute" style="top: 0;left: 0;">
             <a href="{{ route('articles.create') }}">+</a>
         </div>

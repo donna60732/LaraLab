@@ -56,7 +56,9 @@ class ArticlesController extends Controller
     // 編輯文章
     public function edit($id)
     {
-        $user = auth()->user();
+
+        $user = Auth::user();
+        // $user = auth()->user();
         $article = $user->articles()->find($id);
         return view('articles.edit', ['article' => $article]);
     }
@@ -74,6 +76,7 @@ class ArticlesController extends Controller
             'title' => 'required',
             'content' => 'required|min:10'
         ]);
+
         $article->update($content);
         return redirect()->route('articles.index')->with('notice', '文章更新成功!');
     }
