@@ -19,14 +19,18 @@
                 <p> {{ $message->content }} </p>
             </div>
             <div class="flex">
+                @can('edit', $message)
                 <div>
                     <a href="{{ route('messages.edit',['message' => $message->id]) }}" class="btn" style="display: inline-block; margin-right: 5px;">編輯</a>
                 </div>
+                @endcan
+                @can('delete', $message)
                 <form action="{{ route('messages.destroy', $message) }}" method="post">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn" style="margin: 0 5px;">刪除</button>
                 </form>
+                @endcan
             </div>
         </div>
         @endforeach

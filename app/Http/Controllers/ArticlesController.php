@@ -56,7 +56,7 @@ class ArticlesController extends Controller
     // 編輯文章
     public function edit($id)
     {
-
+        // 取得當前登入的用戶
         $user = Auth::user();
         // $user = auth()->user();
         $article = $user->articles()->find($id);

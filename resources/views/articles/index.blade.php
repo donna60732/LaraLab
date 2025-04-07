@@ -21,13 +21,16 @@
             </p>
 
             <div class="flex">
+                @can('edit', $article)
                 <a href="{{ route('articles.edit',['article' => $article->id]) }}" class="btn">編輯</a>
-
+                @endcan
+                @can('delete', $article)
                 <from action="{{route('articles.destroy',$article)}}" method="post">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn" style="margin: 0 10px;">刪除</button>
                 </from>
+                @endcan
             </div>
         </div>
         @endforeach
