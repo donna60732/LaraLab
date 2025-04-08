@@ -2,10 +2,10 @@
 <x-banner title="首頁 Banner" />
 @section('main')
 <div class="articles-container" style="border: 4px solid #0000A8; margin: 10px 0 10px 0; background-color: #C0C4C8;">
-    <div class="relative">
+    <div>
         <h2 class=" font-medium text-2xl" style=" color: white; text-align: center;background-color: #0000A8;">Article</h2>
-        <div class="btn absolute" style="top: 0;left: 0;">
-            <a href="{{ route('articles.create') }}">+</a>
+        <div style="margin: 5px;">
+            <a href="{{ route('articles.create') }}">新增文章</a>
         </div>
     </div>
     <div class="articles-list">

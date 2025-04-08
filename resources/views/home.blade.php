@@ -18,7 +18,9 @@
             <a href=" {{ route('messages.index') }}" class="font-bold" style="margin-right: 10px;">Messages</a>
             @guest
             <a href="{{ route('login') }}" class="font-bold" style="margin-right: 10px;">Login</a>
+            <a href="{{ route('register') }}" class="font-bold" style="margin-right: 10px;">Register</a>
             @endguest
+
             @auth
             <a href="{{ route('dashboard') }}" class="font-bold" style="margin-right: 10px;">{{ Auth::user()->name }}</a>
             <form action="{{ route('logout') }}" method="POST" class="inline">
@@ -26,6 +28,7 @@
                 <button type="submit" class="font-bold">Log out</button>
             </form>
             @endauth
+
         </div>
     </div>
 </body>
