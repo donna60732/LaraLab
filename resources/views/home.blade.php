@@ -28,7 +28,6 @@
                 <button type="submit" class="font-bold">Log out</button>
             </form>
             @endauth
-
         </div>
     </div>
 </body>
